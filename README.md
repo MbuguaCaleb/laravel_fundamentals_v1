@@ -56,3 +56,47 @@ Creating a controller inside a directory:
 php artisan make:controller Auth\\RegisterController
 
 ```
+
+**Facade**
+
+```
+Shorthand to accessing underlying functionality really nicely.
+
+Hash::make()
+
+There is a lot underlying in this function but its hidden from use.
+```
+
+**Mass Assingment**
+
+```
+When you have permission to put an array of values into a model all at once.
+
+For instance
+
+$user = new User(request()->all());
+
+You may use protected fillable or protected guarded so as to guard against this.
+
+protected $guarded = ['*'];
+
+or
+
+$fillable = ['name', 'password', 'email'];
+
+Means that these are the only fields in the model which are mass assignable.
+
+It is very imporant to protect important fields from mass assignment.
+
+
+```
+
+**Facades and helpers**
+
+```
+I May either user the Auth::user() facade or the auth()->user() helper so as to retrieve the details of
+a logged in user.
+
+```
+
+**Notes by Mbugua caleb**
