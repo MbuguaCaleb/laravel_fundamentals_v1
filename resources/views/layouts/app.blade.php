@@ -14,29 +14,34 @@
 <a href="" class="p-3">Home</a>
 </li>
 <li>
-<a href="" class="p-3">Dashboard</a>
+<a href="{{route('dashboard')}}" class="p-3">Dashboard</a>
 </li>
 <li>
-<a href="" class="p-3">Post</a>
+<a href="#" class="p-3">Post</a>
 </li>
 </ul>
 <ul class="flex items-center">
 
-@if(auth()->user())
+@auth
 <li>
-<a href="" class="p-3">Mbugua Caleb</a>
+<a href="" class="p-3">{{auth()->user()->username}}</a>
 </li>
 <li>
-<a href="" class="p-3">Log Out</a>
+<form action="{{route('logout')}}" method="post" 
+class="inline p-3">
+@csrf
+<button type=="submit">LogOut</button>
+</form>
 </li>
-@else
+@endauth
+@guest
 <li>
-<a href="" class="p-3">LogIn</a>
+<a href="{{route('login')}}" class="p-3">LogIn</a>
 </li>
 <li>
-<a href="" class="p-3">Register</a>
+<a href="{{route('register')}}" class="p-3">Register</a>
 </li>
-@endif
+@endguest
 </ul>
  </nav>
     @yield('content')

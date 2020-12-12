@@ -99,4 +99,45 @@ a logged in user.
 
 ```
 
+**Authentication sessions**
+
+```
+There are two alternatives:
+
+(a)
+    if(auth()->user)
+
+    @else
+
+    @endif
+
+(b)Auth and guest directives.
+
+@auth
+
+@endauth
+
+
+@guest
+
+@endguest
+
+N/B ONE WAYS TO EASILY LOGOUT IS CLEAR THE COOKIES.
+```
+
+**SHORT NOTES**
+
+```
+(a)Creating a Controller into a new folder/directory
+
+php artisan make:controller Auth\\LoginController
+
+
+(b)Whenever errors occur they are flashed to the session and your blade template using the session()  helper helps to display these errors.
+
+
+
+
+```
+
 **Notes by Mbugua caleb**

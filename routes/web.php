@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LogInController;
+use App\Http\Controllers\Auth\LogOutController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -16,11 +18,26 @@ use App\Http\Controllers\DashboardController;
 */
 
 
+
+//returing view via route closure
+Route::get('/', function() {
+return view('home');
+})->name('home');
+
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+
+
 Route::get('/register',[RegisterController::class,'index'])->name('register');
 
-//! POST ROUTE INHERITS NAME FROM THE REGISTER THUS THERES NO NEED OF TAGGING THE ROUTE NAME
+//POST ROUTE INHERITS NAME FROM THE REGISTER THUS THERES NO NEED OF TAGGING THE ROUTE NAME
 Route::post('/register',[RegisterController::class,'store']);
+
+
+Route::get('/login',[LogInController::class,'index'])->name('login');
+Route::post('/login',[LogInController::class,'store']);
+
+
+Route::post('/logout',[LogOutController::class,'logout'])->name('logout');
 
 
 Route::get('/posts', function () {

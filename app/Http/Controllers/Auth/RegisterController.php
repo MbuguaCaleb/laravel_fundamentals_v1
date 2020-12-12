@@ -41,6 +41,7 @@ class RegisterController extends Controller
 
         //sign in
         //dd($request->only('email','password') is a shorter way of gettting the request details.
+        //auth  here is a 
         auth()->attempt($request->only('email','password'));
 
         //redirect to dashboard after signing in
