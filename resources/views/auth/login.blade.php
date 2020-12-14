@@ -31,6 +31,12 @@ class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-
 </div>
 @enderror
 </div>
+<div class="mb-4">
+<div class="flex items-center">
+<input type="checkbox" name="remember" id="remember" class="mr-2">
+<label for="remember">Remember me</label>
+</div>
+</div>
 <div>
 <button type="submit" class="bg-blue-500 text-white px-4 py-3
 rounded font-medium w-full">LogIn</button>

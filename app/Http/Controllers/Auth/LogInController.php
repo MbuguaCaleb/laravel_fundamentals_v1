@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class LogInController extends Controller
 {
+    public function __construct(){
+        //this cotroller methods cannot be accessed by a logged in user
+        $this->middleware('guest');
+    }
+
     public function index() {
 
         return view('auth.login');
@@ -14,6 +19,7 @@ class LogInController extends Controller
 
     public function store(Request $request){
 
+       
         //validating the request
         $this->validate($request,[
             'email'=>'required|email',
@@ -23,7 +29,8 @@ class LogInController extends Controller
 
         //cathcing error for failed login attempt
         //first executes the attempt and if it does not pass it execures whats in the if block
-       if(!auth()->attempt($request->only('email','password'))){
+        //Notice here remember has been implemented
+       if(!auth()->attempt($request->only('email','password'), $request->remember)){
         return back()->with('status','Invalid LogIn Credentials');
        };
 

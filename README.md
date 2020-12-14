@@ -135,6 +135,54 @@ php artisan make:controller Auth\\LoginController
 
 (b)Whenever errors occur they are flashed to the session and your blade template using the session()  helper helps to display these errors.
 
+(c)Before any of your requests are made in Laravel, middleware must first  of all be run..Whether in web or in api.Middleware comes in between your request and your response.
+
+(d)Creating a model together with a factory or migration
+
+php artisan make:model Post -m -f
+
+Getting help with regards to a particular command is as follows:
+
+php artisan make:model Post --help
+
+(e)Learn about constraints and cascading.Cascading means if we delete a user all of their posts are as well deleted.
+
+$table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+
+Relationships
+There is no need to reference the id, and user_id since they were referenced from the migrations
+
+
+//User Model Relatioship with Posts.
+public function posts(){
+       return $this->hasMany(Post::class);
+       }
+
+You may howeever put them if yo wish.
+
+return $this->hasMany(Post::class, 'foreign_key', 'owner_key');
+
+Extracting Posts Belonging to a User.
+
+ dd(auth()->user()->posts);
+
+The Above returns the Posts belonging to a user as a collection which are much more powerful than
+ normal arrays in Laravel.
+
+Fethcing from reltationship
+
+  public function user(){
+      return $this->belongsTo(User::class);
+}
+
+{{$post->user->name}}
+
+N/B
+The method is always accessed as an attribute.
+
+(f)Dates in Laravel are returned as Carbon Objects...These means wa can be able to do a lot of manipulations.
+
 
 
 

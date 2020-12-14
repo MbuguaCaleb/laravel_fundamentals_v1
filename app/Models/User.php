@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //There is no need to refrence the id, and user_id since they were referenced 
+    //from the migrations
+    public function posts(){
+       return $this->hasMany(Post::class);
+    }
+
+    
 }

@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+
+    //guest middleware proteects this route from being accsessed by
+    //a user who is already logged in.
+    //They will not be allowed to access the register routes
+    public function __construct(){
+        $this->middleware('guest');
+    }
+
     public function index(){
         
         return view('auth.register');
