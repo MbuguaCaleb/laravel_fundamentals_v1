@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogOutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostLikesController;
+use App\Http\Controllers\UserPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,8 @@ Route::post('/login',[LogInController::class,'store']);
 
 
 Route::post('/logout',[LogOutController::class,'logout'])->name('logout');
+
+Route::get('/users/{user:username}/posts',[UserPostController::class,'index'])->name('users.posts');
 
 //Post Routes
 Route::get('/posts',[PostController::class,'index'])->name('posts');
