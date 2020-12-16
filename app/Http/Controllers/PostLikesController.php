@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Mail\PostLiked;
+use Illuminate\Support\Facades\Mail;
 
 class PostLikesController extends Controller
 {
@@ -25,6 +27,9 @@ class PostLikesController extends Controller
             'user_id'=>$request->user()->id,
 
         ]);
+
+        Mail::to($post->user)->send(new PostLiked(auth()->user(),$post ));
+
         //shorthand for return redirect back()
         return back();
     }

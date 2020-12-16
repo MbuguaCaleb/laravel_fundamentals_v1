@@ -208,6 +208,10 @@ composer require barryvdh/laravel-debugbar --dev
 <button type="submit" class="text-blue-500">Delete</button>
 </form>
 
+(k)String helper to Singluarize/Pluralize.
+
+{{$posts->count()}} {{Str::plural('post', $posts->count())}}
+
 
 ```
 

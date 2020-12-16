@@ -13,7 +13,7 @@ class DashboardController extends Controller
     }
     
     public function index(){
-
+        
         //!dd(auth()->user()); Helps us output logged in userDetails.
 
         //extracting Posts belonging to a user

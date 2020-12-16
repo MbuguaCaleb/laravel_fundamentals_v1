@@ -44,9 +44,9 @@ Route::get('/users/{user:username}/posts',[UserPostController::class,'index'])->
 
 //Post Routes
 Route::get('/posts',[PostController::class,'index'])->name('posts');
+Route::get('/posts/{post}',[PostController::class,'show'])->name('posts.show');
 Route::post('/posts',[PostController::class,'store']);
 Route::delete('/posts/{post}',[PostController::class,'destroy'])->name('posts.destroy');
-
 
 //Post Likes
 //1.Without Root Model Binding

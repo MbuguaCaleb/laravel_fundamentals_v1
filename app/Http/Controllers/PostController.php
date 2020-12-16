@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+
+
 class PostController extends Controller
 {
     public function index(){  
@@ -20,13 +22,19 @@ class PostController extends Controller
         ]);
     }
 
+    public function show(Post $post){
+
+     return view('posts.show',[
+            'post' =>$post          
+    ]);
+    }
+
     public function store(Request $request){
 
        //validation using laravel helper
        $this->validate($request,[
          'body' =>'required'
        ]);
-
        /*Shorthand One*/
         // Post::create([
         //     'user_id'=>auth()->id(),
@@ -37,10 +45,8 @@ class PostController extends Controller
     //    $request->user()->posts()->create([
     //        'body' =>$request->body
     //    ]);
-
     //   /*shorthand Three*/
        $request->user()->posts()->create($request->only('body'));
-
        return back();
     }
 

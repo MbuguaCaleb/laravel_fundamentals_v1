@@ -51,5 +51,11 @@ class User extends Authenticatable
     public function likes(){
         return $this->hasMany(Like::class);
     }
+
+    /*This is an Eloquent distant relationship*/
+    /*getting hoe many likes a user has for their posts*/
+    public function receivedLikes(){
+        return $this->hasManyThrough(Like::class, Post::class);
+    }
         
 }
