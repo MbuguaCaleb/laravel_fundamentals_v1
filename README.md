@@ -295,6 +295,18 @@ $this->authorize('delete', $post);
 @endcan
 ```
 
+**SOFTDELETING**
+
+```
+iT Allows me not to delete a record permanently...
+
+Comes in handy with a lot of functionalities such as
+
+$post->likes()->onlyTrashed()
+
+(sorts out the deleted records)
+```
+
 **Notes by**
 
 ```
