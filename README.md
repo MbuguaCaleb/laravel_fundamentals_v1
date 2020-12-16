@@ -183,9 +183,117 @@ The method is always accessed as an attribute.
 
 (f)Dates in Laravel are returned as Carbon Objects...These means wa can be able to do a lot of manipulations.
 
+(g)In a production environment app debug should be set to false always so that the clients do not get to see the
+errors that we make.
 
+
+php -d memory_limit=-1  require barryvdh/laravel-debugbar --dev
+
+composer require barryvdh/laravel-debugbar --dev
+
+(h)Auth and EndAuth really does help in avoiding complex if statements.
+
+@auth
+
+@endauth
+
+(i)Passing parameters to named routes
+
+<form action="{{route('posts',$post)}}" method="post">
+
+(j)Method Spoofing.
+<form action="{{route('posts',$post)}}" method="post">
+@csrf
+@method('DELETE')
+<button type="submit" class="text-blue-500">Delete</button>
+</form>
 
 
 ```
 
-**Notes by Mbugua caleb**
+**Laravel Factories**
+
+```
+STEPS
+
+1.php artisan tinker.
+
+2.Make sure you have prototyped your factory.
+
+3.Generate fake datat with below command.
+ App\Models\Post::factory()->times(200)->create(['user_id'=>9])
+
+```
+
+**Laravel Route Model binding**
+
+```
+
+Most of the time when i pass an ID i normally want to query from a model.
+
+Laravel has simpified this process even further in that i can get the ID and
+the model can be queried now at the Request Level Simplifying the work you would have done as below
+
+Route::post('/posts/{post}/likes',[PostLikesController::class,'store'])->name('post.likes');
+
+{post} is the id parameter received from the blade template.
+
+I may now be directly able to query it with no query at all.
+
+  public function store(Post $post){
+        return $post;
+    }
+
+The above returns for me the object of the Post directly.
+
+
+```
+
+**Laravel Auth helper/facade**
+
+```
+1. auth()->user()->id is same as auth()->id();
+
+
+```
+
+**ORDER BY**
+
+```
+$posts = Post::orderBy('created_at','desc')->with(['user','likes'])->paginate(20);
+
+Lastest is a scope that the same above
+$posts = Post::latest()->with(['user','likes'])->paginate(20);
+
+```
+
+**Policies and Gates**
+
+```
+Authorizations in Laravel may either be performed through policies and gates.
+
+This prevents a user who is logged in from doing certain actions.
+
+For Larger applications policies should be employed for authorization since they do their protection at
+the controller level.
+
+Protection at controller level works way better.
+
+delete is the policy name
+$this->authorize('delete', $post);
+
+@can('delete', $post)
+<form action="{{route('posts.destroy',$post)}}" method="post">
+@csrf
+@method('DELETE')
+<button type="submit" class="text-blue-500">Delete</button>
+</form>
+@endcan
+```
+
+**Notes by**
+
+```
+ Mbugua caleb
+
+```

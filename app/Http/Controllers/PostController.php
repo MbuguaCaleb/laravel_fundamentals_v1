@@ -7,13 +7,13 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(){
-
-      
+    public function index(){  
         //gets a list of all the posts in form of a collecti
         //$posts = Post::get();
         //pagination
-        $posts = Post::paginate(2);
+        //Eager Loading Posts with Users.
+        //This makes querying from relationships much faster.
+        $posts = Post::latest()->with(['user','likes'])->paginate(20);
 
         return view('posts.index',[
             'posts' => $posts
@@ -43,4 +43,16 @@ class PostController extends Controller
 
        return back();
     }
+
+    public function destroy(Post $post){
+ 
+       //implementing policies for authorization
+        
+       //delete is the name of the method in  my policy
+       $this->authorize('delete', $post);
+       //if my policy returns true i may go ahead and implement
+        $post->delete();
+        return back();
+    }
+
 }

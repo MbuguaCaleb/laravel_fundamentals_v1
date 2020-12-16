@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LogInController;
 use App\Http\Controllers\Auth\LogOutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\PostLikesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +42,18 @@ Route::post('/logout',[LogOutController::class,'logout'])->name('logout');
 //Post Routes
 Route::get('/posts',[PostController::class,'index'])->name('posts');
 Route::post('/posts',[PostController::class,'store']);
+Route::delete('/posts/{post}',[PostController::class,'destroy'])->name('posts.destroy');
+
+
+//Post Likes
+//1.Without Root Model Binding
+//Route::post('/posts/{id}/likes',[PostLikesController::class,'store'])->name('post.likes');
+
+//2.With Root Model Binding
+Route::post('/posts/{post}/likes',[PostLikesController::class,'store'])->name('post.likes');
+Route::delete('/posts/{post}/likes',[PostLikesController::class,'destroy'])->name('post.likes');
+
+
+
+
+
