@@ -26,6 +26,7 @@ Route::get('/', function() {
 return view('home');
 })->name('home');
 
+
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/register',[RegisterController::class,'index'])->name('register');
@@ -58,5 +59,7 @@ Route::delete('/posts/{post}/likes',[PostLikesController::class,'destroy'])->nam
 
 
 
-
-
+//MPESA Payments
+Route::get('/mpesa_payments', function() {
+    return view('payments.mpesa.index');
+    })->name('mpesa.logs');

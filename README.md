@@ -225,7 +225,7 @@ STEPS
 2.Make sure you have prototyped your factory.
 
 3.Generate fake datat with below command.
- App\Models\Post::factory()->times(200)->create(['user_id'=>9])
+ App\Models\Post::factory()->times(200)->create(['user_id'=>1])
 
 ```
 
